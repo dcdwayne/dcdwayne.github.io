@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professions</title>
+</head>
+<style type="text/css">
+    .prof-container {
+        font-family: 'Segoe UI', "Microsoft JhengHei", sans-serif;
+        color: #333;
+        max-width: 900px;
+        margin: auto;
+        line-height: 1.6;
+    }
+
+    .prof-section {
+        margin-bottom: 45px;
+    }
+
+    .prof-section-title {
+        font-size: 1.6rem;
+        font-weight: bold;
+        border-left: 5px solid #2c3e50;
+        padding-left: 15px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        color: #2c3e50;
+    }
+
+    /* 1. 專業技能 - 三階層卡片 */
+    .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .skill-card {
+        background: #fdfdfd;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    }
+
+    .skill-card h4 {
+        margin: 0 0 15px 0;
+        color: #337ab7;
+        font-size: 1.2rem;
+        border-bottom: 2px solid #337ab7;
+        padding-bottom: 8px;
+    }
+
+    /* 三階層的次標題 */
+    .skill-subcategory {
+        font-weight: bold;
+        font-size: 0.95rem;
+        color: #555;
+        margin: 15px 0 8px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .skill-subcategory::before {
+        content: "▹";
+        margin-right: 5px;
+        color: #999;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .skill-tag {
+        background: #e9ecef;
+        color: #495057;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+
+    /* 2. 專業證照 - 自動適應照片牆 */
+    .cert-logo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .cert-logo {
+        width: 100%;
+        max-width: 150px;
+        height: 120px;
+        /* 固定高度讓排版整齊 */
+        object-fit: contain;
+        /* 保持圖片比例 */
+        transition: transform 0.3s ease;
+    }
+
+    .cert-logo:hover {
+        transform: scale(1.1);
+        /* 滑鼠移過去稍微放大 */
+    }
+
+    /* 3. 專業領域 - 星星列點 */
+    .domain-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .domain-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid #f5f5f5;
+        display: flex;
+        align-items: center;
+        font-size: 1.05rem;
+    }
+
+    .domain-list li::before {
+        content: "★";
+        margin-right: 12px;
+        color: #f1c40f;
+        /* 金色星星 */
+        font-size: 1.1rem;
+    }
+
+    /* 4. 語言專長 - 圖片還原版型 */
+    .lang-block {
+        background: #fffaf0;
+        /* 微暖色背景呼應原圖 */
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #fdf5e6;
+    }
+
+    .lang-title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin: 0 0 15px 0;
+        display: inline-block;
+        border-bottom: 3px solid #00bcd4;
+        /* 青色底線 */
+        padding-bottom: 3px;
+    }
+
+    .lang-proficiency {
+        font-weight: bold;
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+        color: #222;
+        display: flex;
+        gap: 8px;
+    }
+
+    .lang-proficiency span {
+        color: #ccc;
+        /* 分隔線顏色 */
+    }
+
+    .lang-certs {
+        font-size: 0.95rem;
+        color: #444;
+        line-height: 1.8;
+    }
+
+    /* 證照列表樣式 */
+    .cert-list {
+        margin-bottom: 25px;
+        padding-left: 20px;
+    }
+
+    .cert-list li {
+        margin-bottom: 8px;
+        color: #444;
+    }
+</style>
+
+<div class="prof-container">
+
+    <section class="prof-section">
+        <div class="prof-section-title">核心職能 Core Competencies</div>
+        <div class="skill-grid">
+
+            <div class="skill-card">
+                <h4>軟體開發</h4>
+
+                <div class="skill-subcategory">作業系統與環境</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Linux (Ubuntu)</span>
+                    <span class="skill-tag">MacOS</span>
+                    <span class="skill-tag">Docker & Docker Compose</span>
+                </div>
+
+                <div class="skill-subcategory">資料庫 (Database)</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">SQLAlchemy (ORM)</span>
+                </div>
+
+                <div class="skill-subcategory">後端語言與框架</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">FastAPI</span>
+                </div>
+
+                <div class="skill-subcategory">基礎前端</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h4>數據分析</h4>
+
+                <div class="skill-subcategory">資料處理</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">資料清理 (Data Cleaning)</span>
+                    <span class="skill-tag">自動化爬蟲</span>
+                    <span class="skill-tag">ETL</span>
+                </div>
+
+                <div class="skill-subcategory">數據視覺化與分析</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Matplotlib & Plotly</span>
+                    <span class="skill-tag">QGIS</span>
+                    <span class="skill-tag">Google Analytics 4</span>
+                </div>
+
+                <div class="skill-subcategory">人工智慧與建模 (AI & Modeling)</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Deep Learning</span>
+                </div>
+
+                <div class="skill-subcategory">技術文件與簡報</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Latex</span>
+                    <span class="skill-tag">PPT & Nano Banana</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h4>開發/協作工具</h4>
+
+                <div class="skill-subcategory">版本控制</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub / GitLab</span>
+                    <span class="skill-tag">Sublime Merge</span>
+                </div>
+
+                <!--<div class="skill-subcategory">雲端服務</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Firebase</span>
+                </div>-->
+
+                <div class="skill-subcategory">專案管理</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Agile / Scrum</span>
+                    <span class="skill-tag">Asana & Trello</span>
+                </div>
+
+                <div class="skill-subcategory">AI 輔助開發 (AI-Assisted Dev)</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">VS Code + Gemini Code Assist</span>
+                    <span class="skill-tag">Antigravity</span>
+                </div>
+
+            </div>
+
+            <div class="skill-card">
+                <h4>跨領域整合優勢</h4>
+
+                <div class="skill-subcategory">跨領域知識</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">資訊安全</span>
+                    <span class="skill-tag">職業衛生管理</span>
+                    <span class="skill-tag">毒理學＆藥物動力學</span>
+                    <span class="skill-tag">水資源及地球科學等環境領域知識</span>
+                </div>
+
+                <div class="skill-subcategory">軟實力</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">跨部門溝通協調</span>
+                    <span class="skill-tag">技術簡報與教學</span>
+                    <span class="skill-tag">團隊領導</span>
+                </div>
+
+                <div class="skill-subcategory">規律運動</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">羽毛球7-8級</span>
+                    <span class="skill-tag">Hiit</span>
+                    <span class="skill-tag">Abs</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="prof-section">
+        <div class="prof-section-title">專業證照 Certifications</div>
+        <ul class="cert-list">
+            <li>ISO 27001：2022 資訊安全管理系統主導稽核員資格，證照證號：153053138/174610076</li>
+            <li>甲級職業衛生管理師，技術士證號：221-0002491</li>
+            <li>iPAS 淨零碳規劃管理師，證書號：A-Q11-615562024</li>
+            <li>Google Analytics 分析認證，證書編號：155597858</li>
+            <li>PMI-ACP 敏捷專案管理師認證暨實務課程</li>
+        </ul>
+        <div class="cert-logo-grid">
+            <!-- 請將 src 修改為您實際存放 Logo 的路徑 -->
+            <img src="licences/iso27001.jpeg" alt="Google Project Management" class="cert-logo"
+                title="Google Project Management">
+            <img src="licences/logo.png" alt="Scrum Master" class="cert-logo" title="Scrum Master">
+            <img src="licences/ipas.jpg" alt="Scrum Master" class="cert-logo" title="Scrum Master">
+            <img src="licences/ga4.png" alt="ISO 27001" class="cert-logo" title="ISO 27001">
+            <img src="licences/pmiacp.jpeg" alt="Google Data Analytics" class="cert-logo" title="Google Data Analytics">
+
+        </div>
+    </section>
+
+    <section class="prof-section">
+        <div class="prof-section-title">專業學術領域 Domains</div>
+        <ul class="domain-list">
+            <li>健康風險評估 (Risk Assessment)</li>
+            <li>分析化學 (Analytical Chemistry) </li>
+            <li>藥物及毒理動力學 (Pharmacokinetics ＆ Toxicokinetics)</li>
+            <li>藥物分析學 (Pharmaceutical Analysis)</li>
+        </ul>
+    </section>
+
+    <section class="prof-section">
+        <div class="prof-section-title">語言專長 Languages</div>
+        <div class="lang-block">
+            <div class="lang-title">中文</div>
+            <div class="lang-proficiency">
+                母語
+            </div>
+        </div>
+
+        <div class="lang-block">
+            <div class="lang-title">英文</div>
+            <div class="lang-proficiency">
+                聽/精通 <span>|</span> 說/精通 <span>|</span> 讀/精通 <span>|</span> 寫/精通
+            </div>
+            <div class="lang-certs">
+                GEPT全民英檢中高級<br>
+                TOEFL 87<br>
+                GRE 307
+            </div>
+        </div>
+
+        <div class="lang-block">
+            <div class="lang-title">日文</div>
+            <div class="lang-proficiency">
+                聽/略懂 <span>|</span> 說/略懂 <span>|</span> 讀/略懂 <span>|</span> 寫/略懂
+            </div>
+            <div class="lang-certs">
+                JLPT N4
+            </div>
+        </div>
+
+    </section>
+
+</div>

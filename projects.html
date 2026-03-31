@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+</head>
+<style type="text/css">
+    .project-container {
+        font-family: 'Segoe UI', "Microsoft JhengHei", sans-serif;
+        color: #333;
+        line-height: 1.6;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    /* 仿照 Resume 的 Section 標題樣式 */
+    .section-title {
+        border-bottom: 2px solid #444;
+        padding-bottom: 10px;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        color: #222;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .total-number {
+        font-size: 0.9rem;
+        background: #f0f0f0;
+        padding: 4px 12px;
+        border-radius: 20px;
+        color: #666;
+    }
+
+    /* 專案卡片樣式 */
+    .project-card {
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* 性質 Tag */
+    .project-tag {
+        display: inline-block;
+        background-color: #777;
+        /* 預設灰色，會被下方特定類別覆蓋 */
+        color: white;
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    /* 計畫名稱 (主標題) */
+    .project-title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        color: #222;
+    }
+
+    /* 委託單位與時間 (副資訊) */
+    .project-info {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .info-item::before {
+        content: "•";
+        margin-right: 8px;
+        color: #777;
+    }
+
+    /* 專案簡述與執行事項 */
+    .project-description {
+        background-color: #f9f9f9;
+        padding: 8px;
+        border-radius: 6px;
+        border-left: 4px solid #777;
+    }
+
+    .bullet-points {
+        margin: 10px 0 0 20px;
+        padding: 0;
+        list-style-type: disc;
+    }
+
+    .bullet-points li {
+        margin-bottom: 2px;
+    }
+
+    /* --- 不同性質的色系定義 --- */
+
+    /* 研究計畫：藍色 */
+    .type-research .project-tag {
+        background-color: #337ab7;
+    }
+
+    .type-research .project-description {
+        border-left-color: #337ab7;
+    }
+
+    .type-research .info-item::before {
+        color: #337ab7;
+    }
+
+    /* 軟體開發：綠色 */
+    .type-system .project-tag {
+        background-color: #28a745;
+    }
+
+    .type-system .project-description {
+        border-left-color: #28a745;
+    }
+
+    .type-system .info-item::before {
+        color: #28a745;
+    }
+
+    /* 數據分析：紫色 */
+    .type-data .project-tag {
+        background-color: #6f42c1;
+    }
+
+    .type-data .project-description {
+        border-left-color: #6f42c1;
+    }
+
+    .type-data .info-item::before {
+        color: #6f42c1;
+    }
+
+    /* 化學分析：橘紅色 */
+    .type-chem .project-tag {
+        background-color: #d9534f;
+    }
+
+    .type-chem .project-description {
+        border-left-color: #d9534f;
+    }
+
+    .type-chem .info-item::before {
+        color: #d9534f;
+    }
+
+
+    /* 響應式調整 */
+    @media (max-width: 600px) {
+        .project-info {
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+
+    /* 合作單位 Logo 區塊樣式 */
+    .logo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .partner-logo {
+        width: 100%;
+        max-width: 120px;
+        height: 100px;
+        /* 固定高度讓排版整齊 */
+        object-fit: contain;
+        /* 保持圖片比例 */
+        filter: grayscale(0%);
+        /* 調整為100就是，預設灰階，可以配合下面動畫*/
+        opacity: 1;
+        /* 調整透明度，要配合動畫 可以調整為 0.7
+        transition: all 0.3s ease;*/
+    }
+
+    /*滑鼠移過去變彩色
+    .partner-logo:hover {
+        filter: grayscale(0%); 
+        opacity: 1;
+    }*/
+</style>
+
+<div class="project-container">
+    <section>
+        <div class="section-title">
+            <h2>歷年專案經歷 Projects</h2>
+            <span class="total-number">共 16 項計畫 · 專案經驗總年資：7 年 4 個月</span>
+        </div>
+
+        <div class="project-card type-system">
+            <div class="project-tag">軟體開發</div>
+            <h3 class="project-title">基隆市道路邊坡維護管理制度建置暨巡查監測工作(第一期)</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 基隆市政府工務處</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2025/06 - 2026/06</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong>
+                本計畫建立基隆道路邊坡管理系統，旨在有效治理道路邊坡及防災決策之需求。本系統綜整基隆地區道路邊坡相關資料，採用系統化管理方式，提供各式圖層、分析、巡勘及報表管理、資料目錄等功能以供使用者使用與查詢。
+
+                <ul class="bullet-points">
+                    <li>協助標案評選過程，於競爭中勝過多家知名工程顧問公司，如：臺整，成功爭取此千萬級專案。</li>
+                    <li>負責資訊平台從 0 到 1 的全流程開發，包含 UI/UX 介面設計與使用者體驗規劃。</li>
+                    <li>設計關聯式資料庫架構 (PostgreSQL)，並使用 SQLModel 進行 ORM 開發與管理。</li>
+                    <li>採用 FastAPI 開發後端 RESTful API，實作資料 CRUD、自動化報表輸出及系統核心邏輯。</li>
+                    <li>擔任專案經理，協調跨部門資源與溝通，有效控管進度與風險，確保計畫如期交付。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="project-card type-system">
+            <div class="project-tag">軟體開發</div>
+            <h3 class="project-title">115年提升水災防災及淹水警戒整合精進</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 經濟部水利署</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2026/02 - 2026/12</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong> 本項工作依循「水災智慧防災計畫第二期（114-118
+                年）」之防救災數位應用策略，去(114)年規劃建立「淹水警戒及智慧防災成果展示功能模組」，以持續彙整水災智慧防災歷年推動績效及成果展示，除可提供更直觀且易查詢之情資應用外，同時可作為水災防災資訊實務應用之加值平台。今(115)年工作項目包括優化淹水警戒及智慧防災成果展示模組及資料庫內容擴增，新建淹水感測器及警戒雨量站位址雷達雨量、淹水災防告警細胞廣播及未來
+                1 小時鄉(鎮市區)淹水警戒預報等 3 項展示面板。本模組除提供績效成果及水利防災資訊視覺化展示外，同時模組產製成果亦可提供水利署災害緊急應變系統、防災資訊服務網及行動水情 APP
+                之介接或備援應用，可輔助提升水災智慧防災決策效率與落實防災數位應用。
+                <ul class="bullet-points">
+                    <li>擴充自動化 ETL 程式架構，介接更多水利署公開資料 (Open Data)，確保數據即時同步。</li>
+                    <li>利用SQLmodel定義資料表欄位屬性與關聯性關係，建立資料pipeline。</li>
+                    <li>擴充 PostgreSQL 資料庫架構，並運用 ORM 技術進行資料模型管理與存取優化。</li>
+                    <li>採用 FastAPI 框架建置後端 RESTful API，負責系統核心邏輯運算與資料傳輸。</li>
+                    <li>擴充與優化 Plotly 互動式數據儀表板，提供更直觀的淹水警戒分析與操作體驗。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="project-card type-system">
+            <div class="project-tag">軟體開發</div>
+            <h3 class="project-title">115 年度水利局工程管理系統維護及功能開發</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 臺南市政府水利局</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2026/02 - 2026/12</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong> 維持臺南市政府水利局工程管理系統軟硬體維護使系統能正常有效率運作,並提供系統操作諮詢服務。此外，亦針對長官及使用者需求開發新功能以加強系統管理能力。
+                <ul class="bullet-points">
+                    <li>專案管理經驗分享 與 提供諮詢服務</li>
+                    <li>協助教育訓練規劃 課程內容 及 大綱 </li>
+                </ul>
+            </div>
+        </div>
+        <hr style="height: 2px; border: none; background-color: red;" />
+
+        <div class="project-card type-system">
+            <div class="project-tag">軟體開發</div>
+            <h3 class="project-title">全臺土壤液化淺層地下水位動態模式精進評估</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 經濟部地質調查及礦業管理中心</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2025/04 - 2026/12，共三年期</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong>
+                主要旨在整合各分項結果於網路圖資平台進行呈現，主要內容包含所蒐集到的空間資料及時序資料，如地下水分區邊界圖、歷史水位資料、即時模式預測之地下水位分布與所建立之三維水文地質架構等。建立一網路平台囊括本計畫所搜集之資料、建立之淺層三維水文地質架構與地下水位即時推估模式等成果，並提供多種輔助液化分析之功能如岩性自定義剖面繪製、地下水位與鄰近雨量站比較、月尺度與小時尺度地下水預測結果查看與下載、不同超越機率標準之代表性地下水位展示等，亦可提供
+                API 方便其他單位介接使用本計畫成果。
+                <ul class="bullet-points">
+                    <li>專案管理與諮詢</li>
+                    <li>輔助UI/UX設計 新增功能規劃 fly to 輔助圖層 土壤液化潛勢圖 之切換等等</li>
+                    <li>協助回覆委員意見 服務建議書、期中、期末報告撰寫 審查簡報製作</li>
+                    <li>編寫系統操作手冊</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="project-card type-system">
+            <div class="project-tag">軟體開發</div>
+            <h3 class="project-title">污水下水道電腦輔助操作管理系統資安及新增架構建置</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 臺北市政府衛工處</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2024/01 - 2026/04</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong>
+                利用既有即時監視系統資訊整合及介接成果，建置預警防災系統以供本處中控中心於防災作業運用，該預警防災系統需包含但不限於下列各項功能：主畫面、事件管理、統計分析(含歷史資料)、警訊通知、水情資訊(氣象、雨量站、河川水位)、操作建議、廠和站即時操作資訊、污水管渠人孔液位等，另須可查詢既有流量/水位監測資料(並以圖、表方式呈現)、各監測站地理位置訊息、定量降水預報資訊展示等資訊。系統開發完成後應進行源碼掃描(白箱測試)及系統弱點掃描(黑箱測試)，並應排除中、高風險項目後再行上線，此外，維持每年兩次源碼掃描(白箱測試)及系統弱點掃描(黑箱測試)，並排除中、高風險項目。
+                <ul class="bullet-points">
+                    <li>資通安全管理 定期參與 資安內部會議與稽查工作</li>
+                    <li>處理資安掃描(源碼掃描sonarqube、 弱點掃描 openvas 壓力測試 jmeter ) </li>
+                    <li>將掃描成果 並彙整於 期中 期末之 資安報告，並提出改善方案</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="project-card type-system">
+            <div class="project-tag">軟體開發</div>
+            <h3 class="project-title">114年度水利局工程管理系統維護及功能開發</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 臺南市政府水利局</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2025/05 - 2025/12</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong> 維持臺南市政府水利局工程管理系統軟硬體維護使系統能正常有效率運作,並提供系統操作諮詢服務。此外，亦針對長官及使用者需求開發新功能以加強系統管理能力。
+                <ul class="bullet-points">
+                    <li>專案管理 與 追蹤專案進度 諮詢</li>
+                    <li>教育訓練規劃與擔任專案講師 一年兩梯次共四堂課程</li>
+                    <li>電話專人客服，向使用者說明操作方法</li>
+                    <li>期中期末報告與 審查簡報製作</li>
+                </ul>
+            </div>
+        </div>
+
+        <!--
+    <div class="project-card type-system">
+        <div class="project-tag">軟體開發</div>
+        <h3 class="project-title">114 年度智慧災防 AI Agent 數值模擬平台開發案</h3>
+        
+        <div class="project-info">
+            <div class="info-item"><strong>委託單位：</strong> 國家高速網路與計算中心</div>
+            <div class="info-item"><strong>起迄時間：</strong> 2025/04 - 2025/12</div>
+        </div>
+
+        <div class="project-description">
+            <strong>專案簡述：</strong> 透過生物標記技術分析特定物質對人體的潛在健康威脅。
+            <ul class="bullet-points">
+                <li>使用 R 語言進行大規模生物數據的清洗與預處理。</li>
+                <li>建構風險預測模型，提升生物標記識別的準確度。</li>
+                <li>與產學界專家合作，制定物質危害評估標準。</li>
+            </ul>
+        </div>
+    </div>
+    -->
+
+        <div class="project-card type-system">
+            <div class="project-tag">軟體開發</div>
+            <h3 class="project-title">114年提升水災防災及淹水警戒整合精進</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 經濟部水利署</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2025/03 - 2025/12</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong>
+                主要係依循「水災智慧防災計畫第二期（114-118年）」之防救災數位應用相關推動策略，規劃及建立「淹水警戒及智慧防災成果展示功能模組」，工作內容包括規劃及建立展示功能模組基本架構、防災基本資訊介接、水災智慧防災計畫成果展示儀表板及淹水警戒資訊展示加值應用等，期將現行淹水警戒發布資訊加值其展示功能，以提供更完整且親民有感的防災資訊與便民服務，提升數位服務品質及效率。另「水災智慧防災計畫第一期（109-113年）」於去（113年）已推動完成，其各項推動成果有必要進行系統性蒐集整理及統計分析，並規劃建立儀表板展示其成果，同時可提供即時資訊視覺化，輔助決策者快速分析數據掌握狀況及採取行動，進行高效管理與風險應變，提升決策速度與準確性。
+                <ul class="bullet-points">
+                    <li>開發並維護 ETL 流程，自動化介接與同步水利署開放資料。</li>
+                    <li>規劃並建置 PostgreSQL 資料庫，負責資料表結構設計與優化。</li>
+                    <li>採用 FastAPI 框架開發 RESTful API，處理核心業務邏輯並提供前端資料。</li>
+                    <li>運用 Plotly 開發互動式數據儀表板，視覺化呈現淹水警戒與感測器即時數據。</li>
+                    <li>結合 Pandas 與 QGIS 整合分析多維度淹水資料 (如：淹水潛勢圖、水位感測器、歷史災點)。</li>
+                    <li>彙整專案報告中的資訊平台內容，確保技術文件與交付成果的一致性。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="project-card type-data">
+            <div class="project-tag">數據分析</div>
+            <h3 class="project-title">蒐集再生能源運轉維護程序與風險合適性評估</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 工業技術研究院</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2025/03 - 2025/04</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong>
+                本案主軸以離岸風電運轉需求出發，依據發電設備相關數據內容與性質進行蒐集與處理，並根據可能損壞故障等風險因素，與發電設備之運轉數據相互連結，並透過程式工具可將運轉數據投入後，計算風險機率以助於將來長期運轉與大量數據投入之再生能源維護情境與運轉極端情境之模擬。本計畫所涉及之風力機運轉資料涵蓋SCADA監控資料、警示資訊以及維護紀錄等。為使資料具備良好的分析基礎，需透過資料清理、格式轉換與統一儲存等預處理作業，建立標準化且一致性高的資料結構。經由整理，風力機組之監控數據、維護紀錄與事件通報等資訊，將被匯整並儲存至指定資料庫，以利後續查詢、分析及視覺化應用。以下內容將分別說明各類資料的處理方式，並呈現資料清理後的統計結果，以作為本研究進一步分析之基礎。
+                <ul class="bullet-points">
+                    <li>離岸風電運轉資料蒐集與統計：蒐集統計風力機組監控與維護相關數據資料，並協助清洗數據內容、計算具代表性之營運指標(如可用率)，提供逐月風場營運檢視內容。</li>
+                    <li>離岸風電故障風險模式建立：利用風力機組監控與維護相關數據資料(如警報資料與狀態代碼)，以機組停機超過2小時為事件目標，偵測擷取機組停機發生前的數據資料進行相關性分析，以建立故障發生的風險趨勢。
+                    </li>
+                    <li>風力機資料蒐集與資料清理 包括 SCADA監測資料 警報資料（Alarm Data） 運轉狀態資料</li>
+                    <li>營運指標視覺化 如：風力機運轉狀態百分比堆疊長條圖、風力機發電實際可用率、功率曲線性能分級曲線圖、SCADA監控系統數據時序圖</li>
+                    <li>離岸風電故障風險模式建立 透過風力機之運轉狀態資料與警報事件資料，進行離岸風電機組故障事件的相關性分析。</li>
+                    <li>期末報告撰寫 審查簡報製作</li>
+
+                </ul>
+            </div>
+        </div>
+
+        <!--
+    <div class="project-card type-system">
+        <div class="project-tag">軟體開發</div>
+        <h3 class="project-title">114 年度臺北市山坡地社區自主防災水土保持宣導及優良社區選拔委託專業服務案勞務委託</h3>
+        
+        <div class="project-info">
+            <div class="info-item"><strong>委託單位：</strong> 國立台灣大學</div>
+            <div class="info-item"><strong>起迄時間：</strong> 2025/03 - 2025/12</div>
+        </div>
+
+        <div class="project-description">
+            <strong>專案簡述：</strong> 透過生物標記技術分析特定物質對人體的潛在健康威脅。
+            <ul class="bullet-points">
+                <li>使用 R 語言進行大規模生物數據的清洗與預處理。</li>
+                <li>建構風險預測模型，提升生物標記識別的準確度。</li>
+                <li>與產學界專家合作，制定物質危害評估標準。</li>
+            </ul>
+        </div>
+    </div>
+    -->
+        <hr style="height: 2px; border: none; background-color: red;" />
+
+        <div class="project-card type-system">
+            <div class="project-tag">軟體開發</div>
+            <h3 class="project-title">113年度水利局工程管理系統維護及功能開發</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 臺南市政府水利局</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2024/03 - 2024/12</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong> 維持臺南市政府水利局工程管理系統軟硬體維護使系統能正常有效率運作,並提供系統操作諮詢服務。此外，亦針對長官及使用者需求開發新功能以加強系統管理能力。
+                <ul class="bullet-points">
+                    <li>專案管理 追蹤專案進度</li>
+                    <li>期中 期末報告撰寫與審查簡報製作 回覆委員意見書</li>
+                    <li>教育訓練課程規劃與執行 專任講師</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="project-card type-data">
+            <div class="project-tag">數據分析</div>
+            <h3 class="project-title">蒐集再生能源發電效能與運轉風險作法</h3>
+            <!--drive/myspace/2024專案-->
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 工業技術研究院</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2024/04 - 2024/12</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong>
+                本案主軸以離岸風電運轉需求出發，依據發電設備相關數據內容與性質進行蒐集與處理，並根據可能損壞故障等風險因素，與發電設備之運轉數據相互連結，並透過程式工具可將運轉數據投入後，計算效能問題與損壞故障等風險機率，助於將來長期運轉與大量數據投入之再生能源維護情境與運轉極端情境之模擬。
+                <ul class="bullet-points">
+                    <li>離岸風電運轉資料蒐集與處理：針對風力機組監控數據、維護資料、事件報告等資料，進行數據綜整、內容辨識以及清洗排序。（資料繼續往後更新到最新資料）</li>
+                    <li>離岸風電運轉發電性能比對：以探討風力機運轉模式與發電性能之角度，運用風力機組相關資料進行比對，且需考量多部機組交互參考之便利性作為呈現。（資料視覺化 發電效率 堆疊長條圖 比例分布長條圖
+                        ...</li>
+                    <li>離岸風電運轉風險作法蒐集：針對風力機組相關零組件之運轉風險，蒐集故障事件、影響因子與其因果關係訂定，且需利用相關程式套件配合運轉數據投入後之相關參數計算結果。(畫故障樹、填入計算出之機率、風險評估)
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="project-card type-data">
+            <div class="project-tag">數據分析</div>
+            <h3 class="project-title">尖端地層下陷防治技術整合研究</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 國立中央大學</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2024/04 - 2024/09</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong>本研究所使用的資料分別為沉陷資料、岩性資料、地下水位資料、降雨量資料，沉陷資料展現出土層的沉陷情況，岩性資料可以了解土層成分，地下水位可以了解土層的含水量情形，而降雨量與在被土層吸收之後理論上表層土層會擠壓深層土層，因此研判對土層會有直接的影響，本研究基於以上假說，來蒐集上述各種資料用於推估臺灣濁水溪地區各點位之沉陷情況。
+                <ul class="bullet-points">
+                    <li>地層下陷相關資料，包括地陷井之沉陷資料、岩性資料、地下水位資料、降雨量資料、GPS高程資料。清理整理與格式勘誤</li>
+                    <li>地下水位資料異常值偵測與補遺</li>
+                    <li>利用機器學習推估磁環監測井於缺乏觀測時間段之各分層沉陷變動</li>
+                    <li>與學界專家合作，參與多次學術討論。</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr style="height: 2px; border: none; background-color: red;" />
+
+        <div class="project-card type-system">
+            <div class="project-tag">軟體開發</div>
+            <h3 class="project-title">土壤液化淺層地下水位動態模式評估分析</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 經濟部地質調查及礦業管理中心</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2023/04 - 2024/12，共二年期</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong>
+                建立一網路平台囊括本計畫所搜集之資料、建立之淺層三維水文地質架構與地下水位即時推估模式等成果，並提供多種輔助液化分析之功能如岩性自定義剖面繪製、地下水位與鄰近雨量站比較、月尺度與小時尺度地下水預測結果查看與下載等，亦可提供
+                API 方便其他單位介接使用本計畫成果。
+                <ul class="bullet-points">
+                    <li>水位資料清理 自計式水位 人工觀測</li>
+                    <li>資料視覺化 水位時序圖</li>
+                    <li>水位異常值偵測及補遺</li>
+                    <li>參加多場工作會議 期中期末報告 審查簡報製作 回覆委員意見</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="project-card type-data">
+            <div class="project-tag">數據分析</div>
+            <h3 class="project-title">再生能源設備發電運轉數據蒐集及預測分析</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 工業技術研究院</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2023/08 - 2023/12</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong> 本案主軸以離岸風電運轉數據出發，檢視資料健全度及機組健康度，進行風險分析，應用概率風險評估(probabilistic risk assessment ,
+                PRA)架構，結合定性(關聯性)分析與定量(度量值)分析之方法，透過邏輯推理組合各項事件之關聯，並加入週遭變動因子或時間相依特性，建立大型風力發電機組件之動態故障分析。
+                <ul class="bullet-points">
+                    <li>針對離岸風電環境與機組資料進行國際標準及相關文獻蒐集，並協助進行相關風力發電設備系統之資料完整性之定義，加強原有風力機故障分析架構。</li>
+                    <li>協助針對機組訊號進行有效資料判別方法及敏感資料汰除方法。</li>
+                    <li>協助依據風力機葉片系統、傳動鏈系統、電力系統及塔架與水下基礎系統等各零組件架構，進行相關部件生命週期資料特性納入，並擇一系統建立細部故障事件進行研析。</li>
+                    <li>透過已清理之資訊及細部建立之架構，以數學理論疊加計算發生事件之概率，並加入適切之環境影響因子或相關重要度量值，進行系統故障及環境風險分析。</li>
+                    <li>協助進行建立之發電設備系統架構進行事件機率演算及相關模擬，針對故障事件預測成果與相關領域專家進行討論會議以利後續精進。</li>
+                    <li>文獻回顧 國際標準</li>
+                    <li>SCADA監測 資料清理與整理 </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr style="height: 2px; border: none; background-color: red;" />
+
+        <div class="project-card type-research">
+            <div class="project-tag">研究計畫</div>
+            <h3 class="project-title">建立我國利用風險分析作為化學物質管理決策工具之前期規劃專案工作計畫</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 環保署化學物質管理局</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2020/06 - 2021/01</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong>本研究開始建立資料品質評估與使用非實驗的毒理數據的方法，包括：高通量(highthroughput)、計算毒理學 (computational
+                toxicology) 電腦運算方法 (in-silico methods)以及整試驗策略 (Integrated Testing Strategies,
+                ITSs)。希望藉由上述之方法運用在風險評估中來取代活體內實驗 (in-vivo) 與體外實驗 (in-vitro)。為提升化學物質管制效率，本研究也同時探討現有高通量
+                (high-throughput)、計算毒理學以及電腦運算方法 (in-silico methods) 、整試驗策略 (Integrated Testing Strategies,ITSs)
+                的使用，也探討現有風險評估報告項目準則，以及風險評估結果與政策決策之連結。依據目前趨勢以及國際化學物質管理架構，本計畫分析在國內管理架構下第四類毒性化學物質與關注化學物質的定義差別，討論作用模式 (Mode
+                of action) 與人類適用性 (Mode of action/human relevance, MoA/HR) 來區分兩種化學物質可行性，規劃現有工具與QSAR
+                模型來建立基於風險評估之自動化篩選過程的可行性，提出目前挑戰與規劃未來改善之建議，進而提升我國化學物質之管理量能。
+                <ul class="bullet-points">
+                    <li>回顧約40篇以上國際論文，彙整各國之化學物質分類評估架構，擬定我國關注化學物質篩選認定架構建議。</li>
+                    <li>評估利用機器學習與資料探勘等工具，自動化判別與分類化學物質之可行性。</li>
+                    <li>定期舉辦專家會議(毒理、食安、環工、社會科學專家)與成果報告會議(化學局)共4場，以廣泛蒐集專家學者與部會機關意見。</li>
+                    <li>協同博士後研究員撰寫研究成果報告，研究成果公開於環保署毒物及化學物質局官網。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="project-card type-chem">
+            <div class="project-tag">化學分析</div>
+            <h3 class="project-title">發展同時定量分析尿液中多種硫醚尿酸類鍵結物作為多種致癌揮發性有機物之暴露指標</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 國家科學及技術委員會</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2018/09 - 2019/08</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong> 近年來國人非常關切空氣汙染對人體健康的影響，在空氣汙染物中，汽機車廢氣中與石化工業與相關產業常排放國際衛生組織歸類的致癌性的揮發性有機物(carcinogenic
+                volatile organic compounds; cVOCs)。根據毒理學機制，這些cVOCs 經暴露進入人體，會經體內CYP450s
+                酵素代謝活化成為親電子物質，這些物質會攻擊體內蛋白質形成蛋白質共價鍵結物(protein adducts, PAs)，也會受glutathiones transferase 去毒而形成glutathione
+                conjugates，glutathione conjugates 會在腎臟進一步代謝形成硫醚胺酸(mercapturic acids, MAs)經由尿液排出。過去的許多研究證實分析cVOCs 的MAs
+                可以分別作cVOCs暴露的生物指標，如果能利用暴露指標的分析結果進行流行病學的研究，將可以顯著增加建構因果關係的機率。
+                <!--google drive 2019-->
+
+                <ul class="bullet-points">
+                    <li>回顧生物指標(Biomarkers)與化學分析(Analytical Chemistry)國際文獻約40篇以上，建立同時定量分析20種VOCs生物指標的分析方法(UPLC-MSMS)。
+                    </li>
+                    <li>撰寫科技部研究成果期中報告2份，確立暴露與生物指標的因果關係以及建立生物監測模型(biomonitoring computational model)為流行病學研究提供基礎。</li>
+                    <li>全英文指導馬來西亞實習生2位關於化學分析與數據分析的基本知識。</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr style="height: 2px; border: none; background-color: red;" />
+
+        <div class="project-card type-chem">
+            <div class="project-tag">化學分析</div>
+            <h3 class="project-title">白花蛇舌草與蕾莎瓦混合服用在大鼠體內的藥代動力學與藥效學研究</h3>
+
+            <div class="project-info">
+                <div class="info-item"><strong>委託單位：</strong> 國立陽明大學</div>
+                <div class="info-item"><strong>起迄時間：</strong> 2016/09 - 2017/07</div>
+            </div>
+
+            <div class="project-description">
+                <strong>專案簡述：</strong> Sorafenib is one of the most effective target therapeutic agents for patients
+                with late-stage hepatocellular carcinoma. To seek possible alternative adjuvant agents to enhance the
+                efficacy and improve the side effect of sorafenib, Hedyotis diffusa, one of the most prescribed
+                phytomedicines for treating liver cancer patients in Taiwan, was evaluated in this work. We hypothesized
+                that H. diffusa extract is a safety herb combination on the pharmacokinetic and pharmacodynamic effects
+                of sorafenib. We designed treatments of sorafenib in combination with or without H. diffusa extract to
+                examine its pharmacokinetic properties and effects on liver inflammation.
+                <ul class="bullet-points">
+                    <li>文獻回顧藥物動力學約20篇國際論文以上，利用探索式資料分析(Exploratory Data Analysis)初步了解資料並與北市聯醫泌尿科與消化外科醫生共同設計研究</li>
+                    <li>利用動物模型(包括:大鼠約300隻；小鼠約100隻)、化學分析方法(HPLC-UV)以及模擬藥動程式(WinNonlin)以求得藥物動力學參數(如:AUC、半衰期、MRT等)
+                    </li>
+                    <li>研究成果Preclinical Pharmacokinetic Interaction and Histopathological Analyses of Hedyotis diffusa
+                        on Sorafenib in Rats 於2021年發表至ACS Omega國際期刊</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <section>
+        <div class="section-title">
+            <h2>合作單位 Cooperating Units</h2>
+        </div>
+
+        <div class="logo-grid">
+            <!-- 地方政府 -->
+            <img src="unit_logos/taipei-city-government.png" alt="臺北市政府" class="partner-logo" title="臺北市政府">
+            <img src="unit_logos/3783046_1_1.jpg" alt="基隆市政府" class="partner-logo" title="基隆市政府">
+            <img src="unit_logos/20190823081607671.png" alt="臺南市政府" class="partner-logo" title="臺南市政府">
+            <!-- 中央單位 -->
+            <img src="unit_logos/經濟部水利署.png" alt="經濟部水利署" class="partner-logo" title="經濟部水利署">
+            <img src="unit_logos/地礦中心.jpeg" alt="地礦中心" class="partner-logo" title="地礦中心">
+            <img src="unit_logos/ROC_Chemicals_Administration_Emblem.png" alt="化學局" class="partner-logo" title="化學局">
+            <img src="unit_logos/50619.1470752.jpg" alt="工研院" class="partner-logo" title="工研院">
+            <img src="unit_logos/國科會.png" alt="國科會" class="partner-logo" title="國科會">
+            <!-- 學術機構 -->
+            <img src="unit_logos/Emblem72.png" alt="國立臺灣大學" class="partner-logo" title="國立臺灣大學">
+            <img src="unit_logos/KMU_logo300dpi.jpg" alt="高雄醫學大學" class="partner-logo" title="高雄醫學大學">
+            <img src="unit_logos/bf0r7-u8hp5.png" alt="國立陽明大學" class="partner-logo" title="國立陽明大學">
+            <img src="unit_logos/233765208.jpg" alt="國立中央大學" class="partner-logo" title="國立中央大學">
+
+
+        </div>
+    </section>
+</div>
